@@ -1,6 +1,6 @@
 from customtkinter import *
 import customtkinter as ctk
-#test
+#tests
 def customerLogin():
     customerLoginScreen = CTk()
     customerLoginScreen.geometry('300x300')
