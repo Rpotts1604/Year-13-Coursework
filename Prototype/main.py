@@ -1,8 +1,9 @@
 from customtkinter import *
 import customtkinter as ctk
-#
-#iuerfghiherigherghih
-#siony is sexy
+import adminPortal
+import customerPortal
+
+
 def customerLogin():
     customerLoginScreen = CTk()
     customerLoginScreen.geometry('300x300')
@@ -49,13 +50,13 @@ def adminLogin():
 
 
 def customerLoginCheck(username, password, customerLoginScreen):
-    f = open('customerlogins.txt', 'r')
+    f = open('Prototype\customerlogins.txt', 'r')
     for line in f:
         splitLine = line.split(',')
         if splitLine[0] == username and splitLine[1] == password:
             customerLoginScreen.withdraw()
             root.withdraw()
-            customerPortal()
+            customerPortal.customerPortalWin()
         
     
     
@@ -66,26 +67,8 @@ def adminLoginCheck(username, password, adminLoginScreen):
         if splitLine[0] == username and splitLine[1] == password:
             adminLoginScreen.withdraw()
             root.withdraw()
-            adminPortal()   
+            adminPortal.adminPortalWin()  
         
-        
-def adminPortal():
-    root = CTk()
-    root.geometry('800x800')
-    root.maxsize(1200, 1200)
-    root.minsize(400, 400)  
-    root.title('Halo Leisure Admin Portal')
-    
-    root.mainloop()
-    
-def customerPortal():
-    root = CTk()
-    root.geometry('800x800')
-    root.maxsize(1200, 1200)
-    root.minsize(400, 400)
-    root.title('Halo Leisure Customer Portal')
-    
-    root.mainloop()
 
 root = CTk()
 ctk.set_appearance_mode('dark')

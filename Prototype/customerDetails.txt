@@ -1,0 +1,2 @@
+[fName], [lName], [phoneNo], [postCode], [address], [accountType]
+Riley, Potts, 07375645211, CF32 8AU, 7 Gwendoline Street, Halo Active
