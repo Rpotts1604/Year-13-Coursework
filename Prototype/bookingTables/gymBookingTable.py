@@ -16,7 +16,7 @@ def bookingTable():
 
     frame = CTkFrame(root)
 
-    dateSelect = Calendar(frame, selectmode='day',  year = 2024, month=6, day=1, font=('Arial', 25))
+    dateSelect = Calendar(frame, selectmode='day',  year = 2024, month=6, day=1, font=('Arial', (10)))
     dateSelect.grid(row=0, column=0, padx=(0, 15))
 
     timeSelect = CTkComboBox(frame, values=(

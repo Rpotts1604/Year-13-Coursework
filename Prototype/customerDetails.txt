@@ -1,2 +1,1 @@
-[fName],[lName],[phoneNo],[postCode],[address],[accountType],[Halo ID (P.K)]
-Riley,Potts,07375645211,CF32 8AU,7 Gwendoline Street,Halo Active,YSP33564
+[fName],[lName],[DOB],[postCode],[address],[phoneNo], [email], [account type], [Halo ID (P.K)]

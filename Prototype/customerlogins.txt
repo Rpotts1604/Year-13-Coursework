@@ -1,1 +1,3 @@
-customer,pass
+[username],[pass]
+customer,pass,
+riley,password,
