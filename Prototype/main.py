@@ -65,7 +65,8 @@ def customerLoginCheck(username, password, customerLoginScreen):
         
 #Admin username and password validation check
 def adminLoginCheck(username, password, adminLoginScreen):
-    f = open('adminlogins.txt', 'r')
+
+    f = open('Prototype/adminlogins.txt', 'r')
     for line in f:
         splitLine = line.split(',')
         if splitLine[0] == username and splitLine[1] == password:

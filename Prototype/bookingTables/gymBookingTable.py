@@ -32,6 +32,6 @@ def bookingTable():
 
 def bookSession(date, time):
     f = open(f'Prototype\customerBookings\{customerName}.txt', 'a')
-    f.write(f'gym,{date},{time}')
+    f.write(f'gym,{date},{time}, \n')
 
 
