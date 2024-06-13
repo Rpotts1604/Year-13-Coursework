@@ -1,6 +1,7 @@
 from customtkinter import *
 import customtkinter as ctk
 
+#Main Admin portal home page
 def adminPortalWin():
     root = CTk()
     root.geometry('800x800')

@@ -95,6 +95,7 @@ table = [
 import customtkinter as ctk
 from customtkinter import *
 
+#Booking table display for dates and times
 def bookingTable():
     root = CTk()
     root.geometry('800x800')
@@ -103,5 +104,3 @@ def bookingTable():
     root.title('Halo Leisure Booking Sheet')
 
     root.mainloop()
-
-bookingTable()

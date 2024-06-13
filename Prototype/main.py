@@ -3,7 +3,7 @@ import customtkinter as ctk
 import adminPortal
 import customerPortal
 
-
+#Customer login screen
 def customerLogin():
     customerLoginScreen = CTk()
     customerLoginScreen.geometry('300x300')
@@ -26,6 +26,7 @@ def customerLogin():
     
     customerLoginScreen.mainloop()
 
+#Admin login screen
 def adminLogin():
     adminLoginScreen = CTk()
     adminLoginScreen.geometry('300x300')
@@ -48,7 +49,7 @@ def adminLogin():
     
     adminLoginScreen.mainloop()
 
-
+#Customer username and password validation check
 def customerLoginCheck(username, password, customerLoginScreen):
     f = open('Prototype\customerlogins.txt', 'r')
     for line in f:
@@ -58,8 +59,7 @@ def customerLoginCheck(username, password, customerLoginScreen):
             root.withdraw()
             customerPortal.customerPortalWin()
         
-    
-    
+#Admin username and password validation check
 def adminLoginCheck(username, password, adminLoginScreen):
     f = open('adminlogins.txt', 'r')
     for line in f:
@@ -69,7 +69,7 @@ def adminLoginCheck(username, password, adminLoginScreen):
             root.withdraw()
             adminPortal.adminPortalWin()  
         
-
+#Main login home page
 root = CTk()
 ctk.set_appearance_mode('dark')
 ctk.set_default_color_theme('blue')

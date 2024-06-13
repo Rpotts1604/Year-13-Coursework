@@ -2,6 +2,7 @@ import customtkinter as ctk
 from customtkinter import *
 from tkcalendar import Calendar
 
+#Main booking tables for dates and times
 def bookingTable():
     root = CTk()
     root.geometry('600x600')
@@ -21,5 +22,3 @@ def bookingTable():
 
     frame.place(rely=.5, relx=.5, anchor='c')
     root.mainloop()
-
-bookingTable()
