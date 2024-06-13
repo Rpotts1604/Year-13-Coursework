@@ -3,6 +3,10 @@ import customtkinter as ctk
 import bookingTables.swimBookingTable as swimBookingTable
 import bookingTables.gymBookingTable as gymBookingTable
 
+f = open('Prototype\currentLogin.txt', 'r')
+name = f.read()
+f.close()
+
 #Main customer portal window home page
 def customerPortalWin():
     root = CTk()
@@ -15,6 +19,7 @@ def customerPortalWin():
 
     CTkLabel(root, text='Halo Leisure', font=('Arial', 55)).place(relx=.5, rely=.1, anchor='c')
     CTkLabel(root, text='Customer Portal', font=('Arial', 35)).place(relx=.5, rely=.2, anchor='c')
+    CTkLabel(root, text=f'Hello, {name}', font=('Arial', 35)).place(relx=.5, rely=.3, anchor='c')
 
     bookingMenuButton = CTkButton(frame, text='Make a booking', command=bookingMenu)
     bookingMenuButton.grid(row=0, column=0, pady=(15, 15))

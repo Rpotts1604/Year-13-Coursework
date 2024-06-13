@@ -3,6 +3,7 @@ import customtkinter as ctk
 import adminPortal
 import customerPortal
 
+
 #Customer login screen
 def customerLogin():
     customerLoginScreen = CTk()
@@ -55,6 +56,9 @@ def customerLoginCheck(username, password, customerLoginScreen):
     for line in f:
         splitLine = line.split(',')
         if splitLine[0] == username and splitLine[1] == password:
+            f = open('Prototype\currentLogin.txt', 'w')
+            f.write(username)
+            f.close()
             customerLoginScreen.withdraw()
             root.withdraw()
             customerPortal.customerPortalWin()
