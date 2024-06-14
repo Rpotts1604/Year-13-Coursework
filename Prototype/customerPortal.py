@@ -96,10 +96,8 @@ def bookingMenu():
 
     CTkLabel(root, text='Book A Session', font=('Arial', 55)).place(relx=.5, rely=.1, anchor='c')
 
-
-
-    gymBookingButton = CTkButton(frame, text='Swimming', command=swimBookingTable.bookingTable)
-    gymBookingButton.grid(row=0, column=0, pady=(15, 15))
+    swimBookingButton = CTkButton(frame, text='Swimming', command=swimBookingTable.bookingTable)
+    swimBookingButton.grid(row=0, column=0, pady=(15, 15))
 
     gymBookingButton = CTkButton(frame, text='Gym', command=gymBookingTable.bookingTable)
     gymBookingButton.grid(row=1, column=0, pady=(15, 15))

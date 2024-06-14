@@ -3,6 +3,8 @@ import customtkinter as ctk
 import tkinter
 from CTkScrollableDropdown import *
 from random import randint
+import bookingTables.swimBookingTable as swimBookingTable
+import bookingTables.gymBookingTable as gymBookingTable
 
 days = []
 for i in range(1, 32):
@@ -13,12 +15,18 @@ for i in range(1900, 2025):
     years.append(f'{i}')
 accountTypes = ['non-member', 'halo active', 'halo active a2l', 'swimming lessons']
 
+haloID = ''
+
 def searchCustomer(searchTerm, customerSelect):
     f = open('Prototype\customerDetails.txt', 'r')
     for line in f:
         lineSplit = line.split(',')
-        if lineSplit[6] == searchTerm:
+        print(lineSplit)
+        if lineSplit[len(lineSplit)-2] == searchTerm:
             customerSelect.set(f'{lineSplit[0]} {lineSplit[1]}')
+            f = open('Prototype\currentLogin.txt', 'w')
+            f.write(str(lineSplit[len(lineSplit)-2]))
+            f.close()
             print(customerSelect.get())
 
 #Main Admin portal home page
@@ -30,7 +38,7 @@ def adminPortalWin():
     root.minsize(400, 400)  
     root.title('Halo Leisure Admin Portal')
 
-    customerSelect = StringVar(root, 'None')
+    customerSelect = StringVar(root, 'None Selected')
      
     frame = CTkFrame(root)
     searchFrame = CTkFrame(root)
@@ -38,7 +46,7 @@ def adminPortalWin():
     addCustomerButton = CTkButton(frame, text='Add Customer', command=addCustomer)
     addCustomerButton.grid(row=0, column=0)
 
-    bookCustomerButton = CTkButton(frame, text='Book Session')
+    bookCustomerButton = CTkButton(frame, text='Book Session', command=bookCustomer)
     bookCustomerButton.grid(row=1, column=0)
 
     CTkLabel(frame, textvariable=customerSelect).grid(row=2, column=0)
@@ -104,36 +112,48 @@ def addCustomer():
     accountTypeSelect.grid(row=7, column=1)
     CTkScrollableDropdown(accountTypeSelect, values=accountTypes, width=200)
 
-    #fix plzzzz
-    numOfLines = 0
-    count = 0
-    f = open('Prototype/existingMembershipNum.txt', 'r')
-    for line in f:
-        numOfLines = numOfLines + 1
-    f.close()
-
-    f = open('Prototype/existingMembershipNum.txt', 'r')
-    for line in f:
-        count = count + 1
-        haloIdCreate = randint(11111, 99999)
-        print(haloIdCreate, count, numOfLines)
-        lineSplit = line.split(',')
-        if lineSplit[0] != haloIdCreate and count == numOfLines:
-            print('valid')
-            break
-    f.close()
-
+    #haloID
+    loop = True
+    while loop == True:
+        newHaloID = (f'YSP{randint(11111,99999)}')
+        f = open('Prototype/existingMembershipNum.txt', 'r')
+        if newHaloID not in f:
+            f.close()
+            f = open('Prototype/existingMembershipNum', 'a')
+            f.write(f'{newHaloID}, \n')
+            loop = False
+        f.close()
+        
 
     addDetailsButton = CTkButton(root, text='Confirm Details', command=lambda: addDetails(str(fName.get()), str(lName.get()), str(daySelect.
-    get()), str(monthSelect.get()), str(yearSelect.get()), str(postcode.get()), str(address.get()), str(phoneNo.get()), str(email.get())))
+    get()), str(monthSelect.get()), str(yearSelect.get()), str(postcode.get()), str(address.get()), str(phoneNo.get()), str(email.get()), str(accountTypeSelect.get()), newHaloID))
     addDetailsButton.place(relx=.5, rely=.7, anchor='c')
 
     frame.place(rely=.5, relx=.5, anchor='c')
     root.mainloop()
 
-def addDetails(fName, lName, day, month, year, postcode, address, phoneNo, email):
-    f = open('Prototype/customerDetails.txt', 'a')
-    f.write(f'{fName}, {lName}, {day}/{month}/{year}, {postcode}, {address}, {phoneNo}, {email}, \n')
-    f.close()
+def bookCustomer():
+    #Booking menu for list of booking options
+    root = CTk()
+    root.geometry('800x800')
+    root.maxsize(1200, 1200)
+    root.minsize(400, 400)
+    root.title('Halo Leisure Customer Portal')
 
-adminPortalWin()
+    frame = CTkFrame(root)
+
+    CTkLabel(root, text='Book A Session', font=('Arial', 55)).place(relx=.5, rely=.1, anchor='c')
+
+    swimBookingButton = CTkButton(frame, text='Swimming', command=swimBookingTable.bookingTable)
+    swimBookingButton.grid(row=0, column=0, pady=(15, 15))
+
+    gymBookingButton = CTkButton(frame, text='Gym', command=gymBookingTable.bookingTable)
+    gymBookingButton.grid(row=1, column=0, pady=(15, 15))
+
+    frame.place(rely=.5, relx=.5, anchor='c')
+    root.mainloop()
+
+def addDetails(fName, lName, day, month, year, postcode, address, phoneNo, email, accountType, haloID):
+    f = open('Prototype/customerDetails.txt', 'a')
+    f.write(f'{fName},{lName},{day}/{month}/{year},{postcode},{address},{phoneNo},{email},{accountType},{haloID},\n')
+    f.close()

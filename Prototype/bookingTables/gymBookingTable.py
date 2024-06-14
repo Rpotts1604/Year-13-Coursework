@@ -2,12 +2,12 @@ import customtkinter as ctk
 from customtkinter import *
 from tkcalendar import Calendar
 
-f = open('Prototype\currentLogin.txt', 'r')
-customerName = f.read()
-f.close()
-
 #Main booking tables for dates and times
 def bookingTable():
+
+    f = open('Prototype\currentLogin.txt', 'r')
+    customerName = f.read()
+    f.close()
     root = CTk()
     root.geometry('600x600')
     root.maxsize(600, 600)
@@ -24,13 +24,13 @@ def bookingTable():
     ))
     timeSelect.grid(row=0, column=1, padx=(15, 0))
 
-    bookButton = CTkButton(root, text='Book Session', command=lambda: bookSession(str(dateSelect.get_date()), str(timeSelect.get())))
+    bookButton = CTkButton(root, text='Book Session', command=lambda: bookSession(str(dateSelect.get_date()), str(timeSelect.get()), customerName))
     bookButton.place(relx=.5, rely=.7, anchor='c')
 
     frame.place(rely=.5, relx=.5, anchor='c')
     root.mainloop()
 
-def bookSession(date, time):
+def bookSession(date, time, customerName):
     f = open(f'Prototype\customerBookings\{customerName}.txt', 'a')
     f.write(f'gym,{date},{time}, \n')
 
