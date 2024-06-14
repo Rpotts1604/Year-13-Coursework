@@ -1,3 +1,4 @@
 [fName],[lName],[DOB],[postCode],[address],[phoneNo], [email], [account type], [Halo ID (P.K)]
 
 riley,potts,3/4/1903,CF32 8AU,7 Gwendoline Street,07375645211,riley.potts18@ccyd.org.uk,halo active a2l,YSP58106,
+ellis,wilt,2/2/1902,cf32 8au,123 bum street,07375645211,email@email.com,halo active,YSP33231,

@@ -13,11 +13,11 @@ def customerLogin():
     
     frame = CTkFrame(customerLoginScreen)
     
-    CTkLabel(frame, text='Username  ').grid(row=0, column=0, pady=(0, 10))
+    CTkLabel(frame, text='Halo ID').grid(row=0, column=0, pady=(0, 10), padx=(0, 10))
     usernameEntry = CTkEntry(frame)
     usernameEntry.grid(row=0, column=1, pady=(0, 10))
     
-    CTkLabel(frame, text='Password  ').grid(row=1, column=0, pady=(10, 0))
+    CTkLabel(frame, text='Password').grid(row=1, column=0, pady=(10, 0), padx=(0, 10))
     passwordEntry = CTkEntry(frame)
     passwordEntry.grid(row=1, column=1, pady=(10, 0))
     

@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from customtkinter import *
 from tkcalendar import Calendar
+from CTkMessagebox import *
 
 #Main booking tables for dates and times
 def bookingTable():
@@ -26,15 +27,28 @@ def bookingTable():
     ))
     timeSelect.grid(row=0, column=1, padx=(15, 0))
 
-    bookButton = CTkButton(root, text='Book Session', command=lambda: bookSession(str(dateSelect.get_date()), str(timeSelect.get()), customerName))
+    bookButton = CTkButton(root, text='Book Session', command=lambda: bookSession(str(dateSelect.get_date()), str(timeSelect.get()), customerName, root))
     bookButton.place(relx=.5, rely=.7, anchor='c')
 
     frame.place(rely=.5, relx=.5, anchor='c')
     root.mainloop()
 
 #input booking details into customers file
-def bookSession(date, time, customerName):
+def bookSession(date, time, customerName, root):
+    f = open(f'Prototype\customerBookings\{customerName}.txt', 'a')
+    f.close()
+    f = open(f'Prototype\customerBookings\{customerName}.txt', 'r')
+    for line in f:
+        lineSplit = line.split(',')
+        if lineSplit[0] == 'gym' and lineSplit[1] == date and lineSplit[2] == time:
+            CTkMessagebox(root, title='ERROR', message='Session Already Booked')
+            return
+    f.close()
+        
     f = open(f'Prototype\customerBookings\{customerName}.txt', 'a')
     f.write(f'gym,{date},{time}, \n')
+    f.close()
+        
+
 
 

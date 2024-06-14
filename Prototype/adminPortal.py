@@ -114,6 +114,10 @@ def addCustomer():
     accountTypeSelect.grid(row=7, column=1)
     CTkScrollableDropdown(accountTypeSelect, values=accountTypes, width=200)
 
+    CTkLabel(frame, text='Password').grid(row=8, column=0)
+    passwordInput = CTkEntry(frame)
+    passwordInput.grid(row=8, column=1)
+
     #create unique halo ID
     loop = True
     while loop == True:
@@ -128,7 +132,7 @@ def addCustomer():
         
 
     addDetailsButton = CTkButton(root, text='Confirm Details', command=lambda: addDetails(str(fName.get()), str(lName.get()), str(daySelect.
-    get()), str(monthSelect.get()), str(yearSelect.get()), str(postcode.get()), str(address.get()), str(phoneNo.get()), str(email.get()), str(accountTypeSelect.get()), newHaloID))
+    get()), str(monthSelect.get()), str(yearSelect.get()), str(postcode.get()), str(address.get()), str(phoneNo.get()), str(email.get()), str(accountTypeSelect.get()), newHaloID, passwordInput.get()))
     addDetailsButton.place(relx=.5, rely=.7, anchor='c')
 
     frame.place(rely=.5, relx=.5, anchor='c')
@@ -156,7 +160,10 @@ def bookCustomer():
     root.mainloop()
 
 #add a customers details to the system
-def addDetails(fName, lName, day, month, year, postcode, address, phoneNo, email, accountType, haloID):
+def addDetails(fName, lName, day, month, year, postcode, address, phoneNo, email, accountType, haloID, password):
     f = open('Prototype/customerDetails.txt', 'a')
     f.write(f'{fName},{lName},{day}/{month}/{year},{postcode},{address},{phoneNo},{email},{accountType},{haloID},\n')
     f.close()
+    
+    f = open('Prototype/customerlogins.txt', 'a')
+    f.write(f'{haloID},{password}')
