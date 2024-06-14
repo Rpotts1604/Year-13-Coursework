@@ -36,6 +36,7 @@ def customerPortalWin(username):
     frame.place(relx=.5, rely=.5, anchor='c')
     root.mainloop()
 
+#reload the window to update bookings (BROKEN)
 def updateWin(bookingsLabels, username, frame):
     rowNum = 0
     f = open(f'Prototype/customerBookings/{username}.txt', 'r')
@@ -45,6 +46,7 @@ def updateWin(bookingsLabels, username, frame):
         bookingsLabels((rowNum-1), str(lineSplit[0]), str(lineSplit[1]), str(lineSplit[2]), frame, username)
     f.close()
 
+#show customers previous bookings on the window
 def bookingsLabels(rowNum, type, date, time, frame, username):
     CTkLabel(frame, text=f'{type}, {date}, {time}', font=('Arial', 20)).grid(row=rowNum, column=0, padx=(0, 15), pady=(10, 10))
     cancelButton = CTkButton(frame, text='Cancel', font=CTkFont('Arial', 20), command=lambda: cancelBooking(rowNum, username, frame))

@@ -17,6 +17,7 @@ accountTypes = ['non-member', 'halo active', 'halo active a2l', 'swimming lesson
 
 haloID = ''
 
+#search the system for an existing customer
 def searchCustomer(searchTerm, customerSelect):
     f = open('Prototype\customerDetails.txt', 'r')
     for line in f:
@@ -61,6 +62,7 @@ def adminPortalWin():
     searchFrame.place(relx=.5, rely=.9, anchor='c')
     root.mainloop()
 
+#add a customer to the system, detail inputs
 def addCustomer():
     root = CTk()
     root.geometry('800x800')
@@ -112,7 +114,7 @@ def addCustomer():
     accountTypeSelect.grid(row=7, column=1)
     CTkScrollableDropdown(accountTypeSelect, values=accountTypes, width=200)
 
-    #haloID
+    #create unique halo ID
     loop = True
     while loop == True:
         newHaloID = (f'YSP{randint(11111,99999)}')
@@ -132,8 +134,8 @@ def addCustomer():
     frame.place(rely=.5, relx=.5, anchor='c')
     root.mainloop()
 
+#Booking menu for list of booking options
 def bookCustomer():
-    #Booking menu for list of booking options
     root = CTk()
     root.geometry('800x800')
     root.maxsize(1200, 1200)
@@ -153,6 +155,7 @@ def bookCustomer():
     frame.place(rely=.5, relx=.5, anchor='c')
     root.mainloop()
 
+#add a customers details to the system
 def addDetails(fName, lName, day, month, year, postcode, address, phoneNo, email, accountType, haloID):
     f = open('Prototype/customerDetails.txt', 'a')
     f.write(f'{fName},{lName},{day}/{month}/{year},{postcode},{address},{phoneNo},{email},{accountType},{haloID},\n')
