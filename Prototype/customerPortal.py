@@ -187,8 +187,6 @@ def customerAccountEdit(username):
     root.mainloop()
 
 def saveChanges(fNameSave, lNameSave, dobSave, postCodeSave,addressSave, phoneNoSave, emailSave):
-
-    
     currentLoginFile = open('Prototype/currentLogin.txt', 'r')
     currentLoginArray = currentLoginFile.readlines()
     currentLogin = currentLoginArray[0]
@@ -212,5 +210,3 @@ def saveChanges(fNameSave, lNameSave, dobSave, postCodeSave,addressSave, phoneNo
     f.write(f'{fNameSave},{lNameSave},{dobSave},{postCodeSave},{addressSave},{phoneNoSave},{emailSave},{accountType},{currentLogin},\n')
     f.close()
     tempFile.close()
-
-customerPortalWin('YSP33231')
