@@ -132,8 +132,14 @@ def customerAccountEdit(username):
             fName = StringVar(root, lineSplit[0])
             lName = StringVar(root, lineSplit[1])
             dob = StringVar(root, lineSplit[2])
-            phoneNo = StringVar(root, lineSplit[3])
-            email = StringVar(root, lineSplit[4])
+            dobSplit = (dob.get()).split('/')
+            day = dobSplit[0]
+            month = dobSplit[1]
+            year = dobSplit[2]
+            postcode = StringVar(root, lineSplit[3])
+            address = StringVar(root, lineSplit[4])
+            phoneNo = StringVar(root, lineSplit[5])
+            email = StringVar(root, lineSplit[6])
     f.close()
 
     CTkLabel(frame, text='First Name').grid(row=0, column=0)
@@ -145,29 +151,52 @@ def customerAccountEdit(username):
     lNameEdit.grid(row=1, column=1)
 
     CTkLabel(frame, text='Date Of Birth').grid(row=2, column=0)
-    daySelect = CTkComboBox(frame, values='D')
+    daySelect = CTkComboBox(frame, values=day)
     daySelect.grid(row=2, column=1)
     CTkScrollableDropdown(daySelect, values=days)
 
-    monthSelect = CTkComboBox(frame, values='M')
+    monthSelect = CTkComboBox(frame, values=month)
     monthSelect.grid(row=2, column=2)
     CTkScrollableDropdown(monthSelect, values=months)
 
-    yearSelect = CTkComboBox(frame, values='Y')
+    yearSelect = CTkComboBox(frame, values=year)
     yearSelect.grid(row=2, column=3)
     CTkScrollableDropdown(yearSelect, values=years)
 
     CTkLabel(frame, text='').grid(row=3, column=0)
-    phoneNoEdit = CTkEntry(frame, textvariable=phoneNo)
-    phoneNoEdit.grid(row=3, column=1)
+    postCodeEdit = CTkEntry(frame, textvariable=postcode)
+    postCodeEdit.grid(row=3, column=1)
 
     CTkLabel(frame, text='').grid(row=4, column=0)
+    addressEdit = CTkEntry(frame, textvariable=address)
+    addressEdit.grid(row=4, column=1)
+
+
+    CTkLabel(frame, text='').grid(row=5, column=0)
+    phoneNoEdit = CTkEntry(frame, textvariable=phoneNo)
+    phoneNoEdit.grid(row=5, column=1)
+
+    CTkLabel(frame, text='').grid(row=6, column=0)
     emailEdit = CTkEntry(frame, textvariable=email)
-    emailEdit.grid(row=4, column=1)
+    emailEdit.grid(row=6, column=1)
 
+    fNameSave = fNameEdit.get()
+    lNameSave = lNameEdit.get()
+    daySave = daySelect.get()
+    monthSave = monthSelect.get()
+    yearSave = yearSelect.get()
+    dobSave = (f'{daySave}/{monthSave}/{yearSave}')
+    addressSave = addressEdit.get()
+    phoneNoSave = phoneNoEdit.get()
+    emailSave = emailEdit.get()
+
+    saveButton = CTkButton(root, text='Save', command=lambda: saveChanges(fNameSave, lNameSave, dobSave, addressSave, phoneNoSave, emailSave))
+    saveButton.place(relx=.5, rely=.8, anchor='c')
     
-
     frame.place(relx=.5, rely=.5, anchor='c')
     root.mainloop()
 
-#customerPortalWin('YSP58106')
+def saveChanges(fNameSave, lNameSave, dobSave, addressSave, phoneNoSave, emailSave):
+    return
+
+customerPortalWin('YSP33231')
