@@ -3,6 +3,7 @@ import customtkinter as ctk
 import adminPortal
 import customerPortal
 from time import sleep
+from CTkMessagebox import *
 
 
 #Customer login screen
@@ -60,6 +61,8 @@ def customerLoginCheck(username, password, customerLoginScreen):
             customerLoginScreen.withdraw()
             root.withdraw()
             customerPortal.customerPortalWin(username)
+            return
+    CTkMessagebox(customerLoginScreen, title='ERROR', message='Login not found')
         
 #Admin username and password validation check
 def adminLoginCheck(username, password, adminLoginScreen):
@@ -71,6 +74,8 @@ def adminLoginCheck(username, password, adminLoginScreen):
             adminLoginScreen.withdraw()
             root.withdraw()
             adminPortal.adminPortalWin()  
+            return
+    CTkMessagebox(adminLoginScreen, title='ERROR', message='Login not found')
         
 #Main login home page
 root = CTk()
