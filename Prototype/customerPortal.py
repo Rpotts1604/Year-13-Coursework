@@ -180,23 +180,37 @@ def customerAccountEdit(username):
     emailEdit = CTkEntry(frame, textvariable=email)
     emailEdit.grid(row=6, column=1)
 
-    fNameSave = fNameEdit.get()
-    lNameSave = lNameEdit.get()
-    daySave = daySelect.get()
-    monthSave = monthSelect.get()
-    yearSave = yearSelect.get()
-    dobSave = (f'{daySave}/{monthSave}/{yearSave}')
-    addressSave = addressEdit.get()
-    phoneNoSave = phoneNoEdit.get()
-    emailSave = emailEdit.get()
-
-    saveButton = CTkButton(root, text='Save', command=lambda: saveChanges(fNameSave, lNameSave, dobSave, addressSave, phoneNoSave, emailSave))
+    saveButton = CTkButton(root, text='Save', command=lambda: saveChanges(fNameEdit.get(), lNameEdit.get(), (f'{daySelect.get()}/{monthSelect.get()}/{yearSelect.get()}'), postCodeEdit.get(),addressEdit.get(), phoneNoEdit.get(), emailEdit.get()))
     saveButton.place(relx=.5, rely=.8, anchor='c')
     
     frame.place(relx=.5, rely=.5, anchor='c')
     root.mainloop()
 
-def saveChanges(fNameSave, lNameSave, dobSave, addressSave, phoneNoSave, emailSave):
-    return
-#kj
+def saveChanges(fNameSave, lNameSave, dobSave, postCodeSave,addressSave, phoneNoSave, emailSave):
+
+    
+    currentLoginFile = open('Prototype/currentLogin.txt', 'r')
+    currentLoginArray = currentLoginFile.readlines()
+    currentLogin = currentLoginArray[0]
+    currentLoginFile.close()
+    f = open('Prototype/customerDetails.txt', 'r')
+    tempFile = open('Prototype/customerDetailsTemp.txt', 'w')
+    for line in f:
+        lineSplit = line.split(',')
+        accountType = lineSplit[7]
+        tempFile.write(line)
+    f.close()
+    tempFile.close()
+
+    f = open('Prototype/customerDetails.txt', 'w')
+    tempFile = open('Prototype/customerDetailsTemp.txt', 'r')
+    for line in tempFile:
+        lineSplit = line.split(',')
+        if lineSplit[8] != currentLogin:
+            f.write(line)
+    print(f'{fNameSave},{lNameSave},{dobSave},{postCodeSave},{addressSave},{phoneNoSave},{emailSave},{accountType},{currentLogin},\n')
+    f.write(f'{fNameSave},{lNameSave},{dobSave},{postCodeSave},{addressSave},{phoneNoSave},{emailSave},{accountType},{currentLogin},\n')
+    f.close()
+    tempFile.close()
+
 customerPortalWin('YSP33231')
