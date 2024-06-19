@@ -4,7 +4,7 @@ import adminPortal
 import customerPortal
 from time import sleep
 from CTkMessagebox import *
-
+from tkinter import *
 
 #Customer login screen
 def customerLogin():
@@ -14,15 +14,15 @@ def customerLogin():
     
     frame = CTkFrame(customerLoginScreen)
     
-    CTkLabel(frame, text='Halo ID').grid(row=0, column=0, pady=(0, 10), padx=(0, 10))
+    CTkLabel(frame, text='Halo ID', font=default_font).grid(row=0, column=0, pady=(0, 10), padx=(0, 10))
     usernameEntry = CTkEntry(frame)
     usernameEntry.grid(row=0, column=1, pady=(0, 10))
     
-    CTkLabel(frame, text='Password').grid(row=1, column=0, pady=(10, 0), padx=(0, 10))
+    CTkLabel(frame, text='Password', font=default_font).grid(row=1, column=0, pady=(10, 0), padx=(0, 10))
     passwordEntry = CTkEntry(frame)
     passwordEntry.grid(row=1, column=1, pady=(10, 0))
     
-    loginButton = CTkButton(customerLoginScreen, text='Login', command=lambda: customerLoginCheck(usernameEntry.get(), passwordEntry.get(), customerLoginScreen))
+    loginButton = CTkButton(customerLoginScreen, text='Login', font=default_font, command=lambda: customerLoginCheck(usernameEntry.get(), passwordEntry.get(), customerLoginScreen))
     loginButton.place(relx=.5, rely=.8, anchor='c')
     
     frame.place(relx=.5, rely=.5, anchor='c')
@@ -86,12 +86,15 @@ root.maxsize(1200, 1200)
 root.minsize(400, 400)
 root.title('Halo Leisure Login Portal')
 
-CTkLabel(root, text='Halo Leisure', font=('Arial', 55)).place(relx=.5, rely=.1, anchor='c')
+default_font = CTkFont(family='Microsoft YaHei')
 
-customerLoginButton = CTkButton(root, text='Customer\nLogin', command=customerLogin, font=('Arial', 25))
+logo = PhotoImage(file='Prototype\images\halo-logo.png')
+CTkLabel(root,image=logo, font=('Microsoft YaHei', 55), text='').place(relx=.5, rely=.25, anchor='c')
+
+customerLoginButton = CTkButton(root, text='Customer\nLogin', command=customerLogin, font=('Microsoft YaHei', 25))
 customerLoginButton.place(relx=.33, rely=.5, anchor='c')
 
-adminLoginButton = CTkButton(root, text='Administrator\nLogin', command=adminLogin, font=('Arial', 25))
+adminLoginButton = CTkButton(root, text='Administrator\nLogin', command=adminLogin, font=('Microsoft YaHei', 25))
 adminLoginButton.place(relx=.66, rely=.5, anchor='c')
 
 
